@@ -50,15 +50,24 @@ public class MainActivity extends AppCompatActivity {
         textViewNota=findViewById(R.id.textViewNota);
 
 
-        String nota = "MY COMANDA\n"+
-                "Quantidade de pizzas: "+editTextNumberQuant.getText();
+
 
 
 
         buttonGerar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String tamanho = null;
+                if (checkBox1.isChecked()){
+                    tamanho = checkBox1.getText().toString();
+                } else if (checkBox2.isChecked()) {
+                    tamanho = checkBox2.getText().toString();
+                } else if (checkBox3.isChecked()) {
+                    tamanho = checkBox3.getText().toString();
+                }
 
+                String nota = "MY COMANDA\n"+ "Quantidade de pizzas: "+(editTextNumberQuant.getText().toString())+ checkBox1.getText()+"" +
+                        "\nTamanho: "+tamanho;
                 textViewNota.setText(nota);
             }
         });
