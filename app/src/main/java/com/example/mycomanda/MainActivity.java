@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Switch;
@@ -58,16 +59,60 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String tamanho = null;
-                if (checkBox1.isChecked()){
-                    tamanho = checkBox1.getText().toString();
-                } else if (checkBox2.isChecked()) {
-                    tamanho = checkBox2.getText().toString();
-                } else if (checkBox3.isChecked()) {
-                    tamanho = checkBox3.getText().toString();
+                if (radioButtonP.isChecked()){
+                    tamanho = radioButtonP.getText().toString();
+                } else if (radioButtonM.isChecked()) {
+                    tamanho = radioButtonM.getText().toString();
+                } else if (radioButtonG.isChecked()) {
+                    tamanho = radioButtonG.getText().toString();
                 }
 
-                String nota = "MY COMANDA\n"+ "Quantidade de pizzas: "+(editTextNumberQuant.getText().toString())+ checkBox1.getText()+"" +
-                        "\nTamanho: "+tamanho;
+                String sabores = "";
+                if (checkBox1.isChecked()){
+                    sabores = sabores + checkBox1.getText().toString()+" | ";
+                }
+                if (checkBox2.isChecked()){
+                    sabores =  sabores + checkBox2.getText().toString()+" | ";
+                }
+                if (checkBox3.isChecked()){
+                    sabores =  sabores + checkBox3.getText().toString()+" | ";
+                }
+                if (checkBox4.isChecked()){
+                    sabores = sabores + checkBox4.getText().toString()+" | ";
+                }
+
+                String borda = "";
+                switchborda.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    String borda = "";
+                    @Override
+                    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                        if (switchborda.isChecked()){
+                            borda="SIM";
+                        }else {
+                            borda= "NÃO";
+                        }
+                    }
+                });
+
+
+
+                String bebidas = "";
+                if (checkBox5.isChecked()){
+                    bebidas = bebidas + checkBox5.getText().toString()+" | ";
+                }
+                if (checkBox6.isChecked()){
+                    bebidas = bebidas + checkBox6.getText().toString()+" | ";
+                }
+                if (checkBox7.isChecked()){
+                    bebidas = bebidas + checkBox7.getText().toString()+" | ";
+                }
+
+                String nota = "MY COMANDA\n"+ "Quantidade de pizzas: "+(editTextNumberQuant.getText().toString())+
+                        "\nTamanho: "+tamanho+
+                        "\nSabores: "+sabores+
+                        "\nBorda Recheada: "+borda+
+                        "\nBebidas: "+bebidas;
                 textViewNota.setText(nota);
             }
         });
